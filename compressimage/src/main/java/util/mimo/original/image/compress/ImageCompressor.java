@@ -31,7 +31,7 @@ import io.reactivex.Flowable;
  * --> <Second Reviewer> on [27-Jan-2019 at 3:37 AM].
  * ============================================================================
  **/
-public class Compressor {
+public class ImageCompressor {
     //max width and height values of the compressed image is taken as 612x816
     private int maxWidth = 612;
     private int maxHeight = 816;
@@ -39,31 +39,31 @@ public class Compressor {
     private int quality = 80;
     private String destinationDirectoryPath;
 
-    public Compressor(Context context) {
+    public ImageCompressor(Context context) {
         destinationDirectoryPath = context.getCacheDir().getPath() + File.separator + "images";
     }
 
-    public Compressor setMaxWidth(int maxWidth) {
+    public ImageCompressor setMaxWidth(int maxWidth) {
         this.maxWidth = maxWidth;
         return this;
     }
 
-    public Compressor setMaxHeight(int maxHeight) {
+    public ImageCompressor setMaxHeight(int maxHeight) {
         this.maxHeight = maxHeight;
         return this;
     }
 
-    public Compressor setCompressFormat(Bitmap.CompressFormat compressFormat) {
+    public ImageCompressor setCompressFormat(Bitmap.CompressFormat compressFormat) {
         this.compressFormat = compressFormat;
         return this;
     }
 
-    public Compressor setQuality(int quality) {
+    public ImageCompressor setQuality(int quality) {
         this.quality = quality;
         return this;
     }
 
-    public Compressor setDestinationDirectoryPath(String destinationDirectoryPath) {
+    public ImageCompressor setDestinationDirectoryPath(String destinationDirectoryPath) {
         this.destinationDirectoryPath = destinationDirectoryPath;
         return this;
     }
@@ -73,12 +73,12 @@ public class Compressor {
     }
 
     public File compressToFile(File imageFile, String compressedFileName) throws IOException {
-        return ImageUtil.compressImage(imageFile, maxWidth, maxHeight, compressFormat, quality,
+        return CompressUtil.compressImage(imageFile, maxWidth, maxHeight, compressFormat, quality,
                 destinationDirectoryPath + File.separator + compressedFileName);
     }
 
     public Bitmap compressToBitmap(File imageFile) throws IOException {
-        return ImageUtil.decodeSampledBitmapFromFile(imageFile, maxWidth, maxHeight);
+        return CompressUtil.decodeSampledBitmapFromFile(imageFile, maxWidth, maxHeight);
     }
 
     public Flowable<File> compressToFileAsFlowable(final File imageFile) {

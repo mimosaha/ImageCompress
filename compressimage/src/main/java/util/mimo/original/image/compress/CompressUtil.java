@@ -31,9 +31,9 @@ import java.io.IOException;
  * --> <Second Reviewer> on [27-Jan-2019 at 3:39 AM].
  * ============================================================================
  **/
-class ImageUtil {
+class CompressUtil {
 
-    private ImageUtil() {
+    private CompressUtil() {
 
     }
 
